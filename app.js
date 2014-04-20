@@ -49,7 +49,7 @@ app.get('/auth/facebook', function(req, res) {
     var authUrl = graph.getOauthUrl({
         "client_id":     process.env.fb_app_id
       , "redirect_uri":  'http://localhost:3000/auth/facebook'
-      , "scope":         process.env.s
+      , "scope":         'likes'
     });
     
 
