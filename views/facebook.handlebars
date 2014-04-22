@@ -13,25 +13,44 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->        
-      <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-      <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+      <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+      <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.css">
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
       <script src="/js/d3.js" charset="utf-8"></script>
+      <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 </head>
 
 <body>
       <div class="container">
-      	<h1>Facebook</h1>
-          Your name is {{facebookData.name}}
-          <br>Here are your page likes:
-            {{#each likes.data}}
-              <br>{{name}}
-  
+      	<h1>Facebook Like Map</h1>
+          Hi {{meData.facebookData.name}}!
+        <p>
+        <br>Here are your page likes:<br>
+            {{#each checkin.check.data}}
+               {{name}}<br>
             {{/each}}
-    <br> 
-    Your facebook username is {{facebookData.username}}
+
+
+        <div id="map" style="width: 600px; height: 400px"></div>
+
+        <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+
+    <script>
+        var map = L.map('map').setView([-41.2858, 174.78682], 14);
+        mapLink = 
+            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+        L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; ' + mapLink,
+            maxZoom: 18,
+            }).addTo(map);
+        var marker = L.marker([-41.29042, 174.78219])
+            .addTo(map);
+        
+    </script>
     </div>
 
     <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="/js/bootstrap.js"></script>
 </body>
 </html>

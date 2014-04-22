@@ -11,9 +11,9 @@ var conf = {
 	};
 
 	var authUrl = graph.getOauthUrl({
-	"client_id": process.env.facebook_app_id
-	, "client_secret": process.env.facebook_app_secret 
-	, "redirect_uri": process.env.redirect_uri //change this to heroku website later in .env
+	"client_id": process.env.fb_app_id
+	, "client_secret": process.env.fb_app_secret 
+	, "redirect_uri": 'http://localhost:3000' //change this to heroku website later in .env
 });
 
 exports.graph = graph;

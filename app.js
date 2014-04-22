@@ -49,9 +49,8 @@ app.get('/auth/facebook', function(req, res) {
     var authUrl = graph.getOauthUrl({
         "client_id":     process.env.fb_app_id
       , "redirect_uri":  'http://localhost:3000/auth/facebook'
-      , "scope":         'likes'
-    });
-    
+      , "scope":         'user_likes, user_about_me, friends_likes, user_status, user_checkins'
+    }); 
 
     if (!req.query.error) { //checks whether a user denied the app facebook login/permissions
        console.log("Access Granted");
@@ -64,39 +63,39 @@ app.get('/auth/facebook', function(req, res) {
     return;
       }
 
-
   // code is set
   // we'll send that and get the access token
   graph.authorize({
-      "client_id":      process.env.facebook_app_id
+      "client_id":      process.env.fb_app_id
     , "redirect_uri":   'http://localhost:3000/auth/facebook'
-    , "client_secret":  process.env.facebook_app_secret
+    , "client_secret":  process.env.fb_app_secret
     , "code":           req.query.code
   }, function (err, facebookRes) {
   	console.log("after auth :" + JSON.stringify(facebookRes))
   	console.log("access token set :" + graph.getAccessToken())
-    res.redirect('/UserHasLogginIn');
-  });
-
-  
+    res.redirect('/UserHasLoggedIn');
+  });  
 });
 
 app.get('/UserHasLoggedIn', function(req, res) {
 	graph.get('me', function(err, response) {
+		//empty dataset
+		data = {};
 		console.log(err); //if there is an error this will return a value
-		data = { facebookData: response};
-		res.render('facebook', data);
+		//push the graph.meData to data json
+		data.meData = { facebookData: response};
+		//console.log(data);
+		//second graph.get request, need to change the function return values
+		graph.get('/me/checkins', function(err2, response2) {
+			console.log(err2);
+			data.checkin = { check: response2};
+			console.log(data.checkin.check);
+			res.render('facebook', data);
+		});
 	});
 });
+// get the likes that the user has
 
-app.get('/me/likes', function(req,response){ 
-  // get the likes that the user has
-graph.get('/me/likes', function(err, res) {
-  response.send(res);
-  
-})
-
-});
 
 exports.graph = graph;
 
