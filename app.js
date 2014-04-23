@@ -81,10 +81,10 @@ var finishCounter = 0;
 data = {};
 data.mutualfriends = [];
 
-function getMutualFriends(friend, res){
+function getMutualFriends(friend, res, cx, cy){
   graph.get('/me/mutualfriends/' + friend.id, function(err2, response2) {
     console.log(err2);
-    data.mutualfriends.push({"name": friend.name, "numfriends": ''+response2.data.length});
+    data.mutualfriends.push({"name": friend.name, "numfriends": ''+response2.data.length, "cx": cx, "cy": cy});
     console.log(data.mutualfriends);
 
     finishCounter++;
@@ -109,10 +109,22 @@ app.get('/UserHasLoggedIn', function(req, res) {
       console.log(data.mutualfriends);
       
 		});*/
+
+    var cx = 0;
+    var cy = 150;
+
     for (var i=0; i<25; i++){
       var index = Math.floor((Math.random()*totalfriendcount)); //get a random friend index
       console.log("index: " + index);
-      getMutualFriends(data.friends.data[index], res);
+
+      if(i%5 == 0){
+        cx = 100;
+        cy += 100;
+      }else{
+        cx += 100;
+      }
+
+      getMutualFriends(data.friends.data[index], res, cx, cy);
     }
 	});
 });

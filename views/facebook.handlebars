@@ -35,13 +35,17 @@
 <body>
       <div class="container">
       	<h1 id="title">See how many mutual friends you have with your Facebook connections!</h1>
-        {{#each mutualfriends}}
-          <p>You have {{numfriends}} mutual friends with {{name}}!</p>
-        {{/each}}
 
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="1000" width="1000">
+        {{#each mutualfriends}}
+          <!--<p>You have {{numfriends}} mutual friends with {{name}}!</p>-->
+          <circle cx="{{cx}}" cy="{{cy}}" r="{{numfriends}}" />
+        {{/each}}
+        </svg>
+
+        
           
-            <circle cx="100" cy="150" r="5"/>
+        <!--    <circle cx="100" cy="150" r="5"/>
             <circle cx="200" cy="150" r="5"/>
             <circle cx="300" cy="150" r="5"/>
             <circle cx="400" cy="150" r="5"/>
@@ -65,10 +69,7 @@
             <circle cx="200" cy="550" r="5"/>
             <circle cx="300" cy="550" r="5"/>
             <circle cx="400" cy="550" r="5"/>
-            <circle cx="500" cy="550" r="5"/>
-            
-          
-        </svg>
+            <circle cx="500" cy="550" r="5"/> -->
 
         <script src="script.js" type="text/javascript" >
           var friendcircle = d3.select("#example").selectAll("circle").data([30])
