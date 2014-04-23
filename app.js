@@ -86,15 +86,14 @@ app.get('/UserHasLoggedIn', function(req, res) {
 		data.meData = { facebookData: response};
 		//console.log(data);
 		//second graph.get request, need to change the function return values
-		graph.get('/me/checkins', function(err2, response2) {
+		graph.get('/me/friends', function(err2, response2) {
 			console.log(err2);
-			data.checkin = { check: response2};
-			console.log(data.checkin.check);
+			data.friends = response2;
+			console.log(data.friends.data);
 			res.render('facebook', data);
 		});
 	});
 });
-// get the likes that the user has
 
 
 exports.graph = graph;
