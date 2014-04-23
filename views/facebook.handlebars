@@ -15,36 +15,72 @@
     <![endif]-->        
       <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.css">
-      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+      <link rel="stylesheet" type="text/css" href="/views/stylesheet.css">
       <script src="/js/d3.js" charset="utf-8"></script>
       <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+      <script src="http://d3js.org/d3.v3.min.js" type="text/javascript" charset="utf-8"></script>
+
+      <!-- CSS -->
+      <style type="text/css">
+        #title, p {
+          text-align: center;
+        }
+
+        svg {
+          margin-left: 5%;
+        }
+      </style>
 </head>
 
 <body>
       <div class="container">
-      	<h1>Facebook Like Map</h1>
+      	<h1 id="title">See how many mutual friends you have with your Facebook connections!</h1>
         {{#each mutualfriends}}
           <p>You have {{numfriends}} mutual friends with {{name}}!</p>
         {{/each}}
 
-        <div id="map" style="width: 600px; height: 400px"></div>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="1000" width="1000">
+          
+            <circle cx="100" cy="150" r="5"/>
+            <circle cx="200" cy="150" r="5"/>
+            <circle cx="300" cy="150" r="5"/>
+            <circle cx="400" cy="150" r="5"/>
+            <circle cx="500" cy="150" r="5"/>
+            <circle cx="100" cy="250" r="5"/>
+            <circle cx="200" cy="250" r="5"/>
+            <circle cx="300" cy="250" r="5"/>
+            <circle cx="400" cy="250" r="5"/>
+            <circle cx="500" cy="250" r="5"/>
+            <circle cx="100" cy="350" r="5"/>
+            <circle cx="200" cy="350" r="5"/>
+            <circle cx="300" cy="350" r="5"/>
+            <circle cx="400" cy="350" r="5"/>
+            <circle cx="500" cy="350" r="5"/>
+            <circle cx="100" cy="450" r="5"/>
+            <circle cx="200" cy="450" r="5"/>
+            <circle cx="300" cy="450" r="5"/>
+            <circle cx="400" cy="450" r="5"/>
+            <circle cx="500" cy="450" r="5"/>
+            <circle cx="100" cy="550" r="5"/>
+            <circle cx="200" cy="550" r="5"/>
+            <circle cx="300" cy="550" r="5"/>
+            <circle cx="400" cy="550" r="5"/>
+            <circle cx="500" cy="550" r="5"/>
+            
+          
+        </svg>
 
-        <!--<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+        <script src="script.js" type="text/javascript" >
+          var friendcircle = d3.select("#example").selectAll("circle").data([30])
 
-    <script>
-        var map = L.map('map').setView([-41.2858, 174.78682], 14);
-        mapLink = 
-            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-        L.tileLayer(
-            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; ' + mapLink,
-            maxZoom: 18,
-            }).addTo(map);
-        var marker = L.marker([{{checkin.check.place.latitude}}, {{checkin.check.place.longitude}}.78219])
+          friendcircle.enter().append("circle")
+            .attr("r", function(d){return d});
 
-            .addTo(map);
+
+
+        </script>
+
         
-    </script>-->
     </div>
 
     <script src="https://code.jquery.com/jquery.js"></script>

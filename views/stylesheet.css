@@ -1,0 +1,9 @@
+circle {
+	stroke:  black ;
+  stroke-width: 2px;
+  fill: red;
+}
+
+body {
+	color: red;
+}
