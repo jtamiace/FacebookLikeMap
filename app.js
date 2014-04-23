@@ -98,9 +98,7 @@ app.get('/UserHasLoggedIn', function(req, res) {
 
 exports.graph = graph;
 
-app.get('/UserHasLoggedIn', function(req, res) {
-  res.render("http://localhost:3000/", { title: "Logged In" });
-});
+
 
 //set environment ports and start application
 app.set('port', process.env.PORT || 3000);

@@ -25,10 +25,10 @@
       	<h1>Facebook Like Map</h1>
           Hi {{meData.facebookData.name}}!
         <p>
-        <br>Here are your page likes:<br>
+        <!--<br>Here are your page likes:<br>
             {{#each checkin.check.data}}
                {{name}}<br>
-            {{/each}}
+            {{/each}}-->
 
 
         <div id="map" style="width: 600px; height: 400px"></div>
@@ -44,7 +44,8 @@
             attribution: 'Map data &copy; ' + mapLink,
             maxZoom: 18,
             }).addTo(map);
-        var marker = L.marker([-41.29042, 174.78219])
+        var marker = L.marker([{{checkin.check.place.latitude}}, {{checkin.check.place.longitude}}.78219])
+
             .addTo(map);
         
     </script>
