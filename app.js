@@ -77,19 +77,43 @@ app.get('/auth/facebook', function(req, res) {
   });  
 });
 
+var finishCounter = 0;
+data = {};
+data.mutualfriends = [];
+
+function getMutualFriends(friend, res){
+  graph.get('/me/mutualfriends/' + friend.id, function(err2, response2) {
+    console.log(err2);
+    data.mutualfriends.push({"name": friend.name, "numfriends": ''+response2.data.length});
+    console.log(data.mutualfriends);
+
+    finishCounter++;
+    if(finishCounter === 25){
+      res.render('facebook', data);
+    }
+  });
+}
+
 app.get('/UserHasLoggedIn', function(req, res) {
 	graph.get('me/friends', function(err, response) {
-		//empty dataset
-		data = {};
 		console.log(err);
     data.friends = response;
     console.log(data.friends.data);
-		graph.get('/me/mutualfriends/' + data.friends.data[0].id, function(err2, response2) {
+
+    var totalfriendcount = data.friends.data.length;
+    console.log("total friends: " + totalfriendcount);
+
+		/*graph.get('/me/mutualfriends/' + data.friends.data[index].id, function(err2, response2) {
 		  console.log(err2);
-      data.mutualfriends = [{"name": data.friends.data[0].name, "numfriends": ''+response2.data.length}];
+      data.mutualfriends = [{"name": data.friends.data[index].name, "numfriends": ''+response2.data.length}];
       console.log(data.mutualfriends);
-      res.render('facebook', data);
-		});
+      
+		});*/
+    for (var i=0; i<25; i++){
+      var index = Math.floor((Math.random()*totalfriendcount)); //get a random friend index
+      console.log("index: " + index);
+      getMutualFriends(data.friends.data[index], res);
+    }
 	});
 });
 
