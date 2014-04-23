@@ -78,19 +78,17 @@ app.get('/auth/facebook', function(req, res) {
 });
 
 app.get('/UserHasLoggedIn', function(req, res) {
-	graph.get('me', function(err, response) {
+	graph.get('me/friends', function(err, response) {
 		//empty dataset
 		data = {};
-		console.log(err); //if there is an error this will return a value
-		//push the graph.meData to data json
-		data.meData = { facebookData: response};
-		//console.log(data);
-		//second graph.get request, need to change the function return values
-		graph.get('/me/friends', function(err2, response2) {
-			console.log(err2);
-			data.friends = response2;
-			console.log(data.friends.data);
-			res.render('facebook', data);
+		console.log(err);
+    data.friends = response;
+    console.log(data.friends.data);
+		graph.get('/me/mutualfriends/' + data.friends.data[0].id, function(err2, response2) {
+		  console.log(err2);
+      data.mutualfriends = [{"name": data.friends.data[0].name, "numfriends": ''+response2.data.length}];
+      console.log(data.mutualfriends);
+      res.render('facebook', data);
 		});
 	});
 });

@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<title>Boilerplate</title>	
+	<title>Facebook Mutual Friend Map</title>	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -23,17 +23,13 @@
 <body>
       <div class="container">
       	<h1>Facebook Like Map</h1>
-          Hi {{meData.facebookData.name}}!
-        <p>
-        <!--<br>Here are your page likes:<br>
-            {{#each checkin.check.data}}
-               {{name}}<br>
-            {{/each}}-->
-
+        {{#each mutualfriends}}
+          <p>You have {{numfriends}} mutual friends with {{name}}!</p>
+        {{/each}}
 
         <div id="map" style="width: 600px; height: 400px"></div>
 
-        <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+        <!--<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
 
     <script>
         var map = L.map('map').setView([-41.2858, 174.78682], 14);
@@ -48,7 +44,7 @@
 
             .addTo(map);
         
-    </script>
+    </script>-->
     </div>
 
     <script src="https://code.jquery.com/jquery.js"></script>
