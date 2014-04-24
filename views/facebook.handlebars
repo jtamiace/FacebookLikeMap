@@ -15,7 +15,6 @@
     <![endif]-->        
       <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.css">
-      <link rel="stylesheet" type="text/css" href="/views/stylesheet.css">
       <script src="/js/d3.js" charset="utf-8"></script>
       <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
       <script src="http://d3js.org/d3.v3.min.js" type="text/javascript" charset="utf-8"></script>
@@ -36,12 +35,8 @@
       <div class="container">
       	<h1 id="title">See how many mutual friends you have with your Facebook connections!</h1>
 
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="1000" width="1000">
-        {{#each mutualfriends}}
-          <!--<p>You have {{numfriends}} mutual friends with {{name}}!</p>-->
-          <circle cx="{{cx}}" cy="{{cy}}" r="{{numfriends}}" />
-        {{/each}}
-        </svg>
+        <!--<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="1000" width="1000">
+        </svg>-->
 
         
           
@@ -71,13 +66,22 @@
             <circle cx="400" cy="550" r="5"/>
             <circle cx="500" cy="550" r="5"/> -->
 
-        <script src="script.js" type="text/javascript" >
-          var friendcircle = d3.select("#example").selectAll("circle").data([30])
+        <script type="text/javascript" >
 
-          friendcircle.enter().append("circle")
-            .attr("r", function(d){return d});
+          var svg = d3.select("body").append("svg")
+            .attr("width", 1000)
+            .attr("height", 1000);
 
+          d3.json('/UserHasLoggedIn/default', function(error, data) {
 
+            console.log(data);
+
+            svg.selectAll("circle").data(data).enter()
+              .append("circle")
+              .attr("r", function(d){return d.numfriends})
+              .attr("cx", function(d){return d.cx})
+              .attr("cy", function(d){return d.cy});
+          });
 
         </script>
 

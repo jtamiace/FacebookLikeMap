@@ -83,39 +83,36 @@ data.mutualfriends = [];
 
 function getMutualFriends(friend, res, cx, cy){
   graph.get('/me/mutualfriends/' + friend.id, function(err2, response2) {
-    console.log(err2);
+    //console.log(err2);
     data.mutualfriends.push({"name": friend.name, "numfriends": ''+response2.data.length, "cx": cx, "cy": cy});
-    console.log(data.mutualfriends);
+    //console.log(data.mutualfriends);
 
     finishCounter++;
     if(finishCounter === 25){
-      res.render('facebook', data);
+      res.json(data.mutualfriends);
     }
   });
 }
 
-app.get('/UserHasLoggedIn', function(req, res) {
+app.get('/UserHasLoggedIn', function(req,res) {
+  res.render('facebook', data);
+})
+
+app.get('/UserHasLoggedIn/default', function(req, res) {
 	graph.get('me/friends', function(err, response) {
-		console.log(err);
+		//console.log(err);
     data.friends = response;
-    console.log(data.friends.data);
+    //console.log(data.friends.data);
 
     var totalfriendcount = data.friends.data.length;
-    console.log("total friends: " + totalfriendcount);
-
-		/*graph.get('/me/mutualfriends/' + data.friends.data[index].id, function(err2, response2) {
-		  console.log(err2);
-      data.mutualfriends = [{"name": data.friends.data[index].name, "numfriends": ''+response2.data.length}];
-      console.log(data.mutualfriends);
-      
-		});*/
+    //console.log("total friends: " + totalfriendcount);
 
     var cx = 0;
     var cy = 150;
 
     for (var i=0; i<25; i++){
       var index = Math.floor((Math.random()*totalfriendcount)); //get a random friend index
-      console.log("index: " + index);
+      //console.log("index: " + index);
 
       if(i%5 == 0){
         cx = 100;
