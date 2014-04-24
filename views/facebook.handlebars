@@ -38,41 +38,21 @@
 
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="1000" width="1000">
         {{#each mutualfriends}}
-          <!--<p>You have {{numfriends}} mutual friends with {{name}}!</p>-->
+
           <circle cx="{{cx}}" cy="{{cy}}" r="{{numfriends}}" />
+
+        
         {{/each}}
         </svg>
 
-        
-          
-        <!--    <circle cx="100" cy="150" r="5"/>
-            <circle cx="200" cy="150" r="5"/>
-            <circle cx="300" cy="150" r="5"/>
-            <circle cx="400" cy="150" r="5"/>
-            <circle cx="500" cy="150" r="5"/>
-            <circle cx="100" cy="250" r="5"/>
-            <circle cx="200" cy="250" r="5"/>
-            <circle cx="300" cy="250" r="5"/>
-            <circle cx="400" cy="250" r="5"/>
-            <circle cx="500" cy="250" r="5"/>
-            <circle cx="100" cy="350" r="5"/>
-            <circle cx="200" cy="350" r="5"/>
-            <circle cx="300" cy="350" r="5"/>
-            <circle cx="400" cy="350" r="5"/>
-            <circle cx="500" cy="350" r="5"/>
-            <circle cx="100" cy="450" r="5"/>
-            <circle cx="200" cy="450" r="5"/>
-            <circle cx="300" cy="450" r="5"/>
-            <circle cx="400" cy="450" r="5"/>
-            <circle cx="500" cy="450" r="5"/>
-            <circle cx="100" cy="550" r="5"/>
-            <circle cx="200" cy="550" r="5"/>
-            <circle cx="300" cy="550" r="5"/>
-            <circle cx="400" cy="550" r="5"/>
-            <circle cx="500" cy="550" r="5"/> -->
 
         <script src="script.js" type="text/javascript" >
-          var friendcircle = d3.select("#example").selectAll("circle").data([30])
+          //var friendcircle = d3.select("#example").selectAll("circle")
+
+
+          d3.selectAll("circle").transition()
+              .duration(500)
+              
 
           friendcircle.enter().append("circle")
             .attr("r", function(d){return d});

@@ -111,7 +111,7 @@ app.get('/UserHasLoggedIn', function(req, res) {
 		});*/
 
     var cx = 0;
-    var cy = 150;
+    var cy = 0;
 
     for (var i=0; i<25; i++){
       var index = Math.floor((Math.random()*totalfriendcount)); //get a random friend index
@@ -119,9 +119,9 @@ app.get('/UserHasLoggedIn', function(req, res) {
 
       if(i%5 == 0){
         cx = 100;
-        cy += 100;
+        cy += 150;
       }else{
-        cx += 100;
+        cx += 150;
       }
 
       getMutualFriends(data.friends.data[index], res, cx, cy);
