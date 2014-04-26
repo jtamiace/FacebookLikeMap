@@ -26,6 +26,10 @@
           text-align: center;
         }
 
+        .circle:hover {
+          color: red;
+        }
+
         svg {
           margin-left: 5%;
         }
@@ -39,7 +43,10 @@
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="1000" width="1000">
         {{#each mutualfriends}}
 
-          <circle cx="{{cx}}" cy="{{cy}}" r="{{numfriends}}" />
+          <circle class="circle" cx="{{cx}}" cy="{{cy}}" r="{{numfriends}}" 
+          onmouseover="this.setAttribute('fill', 'red');"
+          onmouseout="this.setAttribute('fill', 'black');"/>
+          {{numfriends}} mutual friends with {{name}}
 
         
         {{/each}}
