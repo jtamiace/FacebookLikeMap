@@ -25,6 +25,10 @@
           text-align: center;
         }
 
+        .circle:hover {
+          color: red;
+        }
+
         svg {
           margin-left: 5%;
         }
@@ -38,35 +42,12 @@
         <!--<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="1000" width="1000">
         </svg>-->
 
-        
-          
-        <!--    <circle cx="100" cy="150" r="5"/>
-            <circle cx="200" cy="150" r="5"/>
-            <circle cx="300" cy="150" r="5"/>
-            <circle cx="400" cy="150" r="5"/>
-            <circle cx="500" cy="150" r="5"/>
-            <circle cx="100" cy="250" r="5"/>
-            <circle cx="200" cy="250" r="5"/>
-            <circle cx="300" cy="250" r="5"/>
-            <circle cx="400" cy="250" r="5"/>
-            <circle cx="500" cy="250" r="5"/>
-            <circle cx="100" cy="350" r="5"/>
-            <circle cx="200" cy="350" r="5"/>
-            <circle cx="300" cy="350" r="5"/>
-            <circle cx="400" cy="350" r="5"/>
-            <circle cx="500" cy="350" r="5"/>
-            <circle cx="100" cy="450" r="5"/>
-            <circle cx="200" cy="450" r="5"/>
-            <circle cx="300" cy="450" r="5"/>
-            <circle cx="400" cy="450" r="5"/>
-            <circle cx="500" cy="450" r="5"/>
-            <circle cx="100" cy="550" r="5"/>
-            <circle cx="200" cy="550" r="5"/>
-            <circle cx="300" cy="550" r="5"/>
-            <circle cx="400" cy="550" r="5"/>
-            <circle cx="500" cy="550" r="5"/> -->
-
         <script type="text/javascript" >
+          //var friendcircle = d3.select("#example").selectAll("circle")
+
+
+          d3.selectAll("circle").transition()
+              .duration(500)
 
           var svg = d3.select("body").append("svg")
             .attr("width", 1000)
@@ -80,7 +61,9 @@
               .append("circle")
               .attr("r", function(d){return d.numfriends})
               .attr("cx", function(d){return d.cx})
-              .attr("cy", function(d){return d.cy});
+              .attr("cy", function(d){return d.cy})
+              .attr("onmouseover", function(d){return "this.setAttribute('fill', 'red');"})
+              .attr("onmouseout", function(d){return "this.setAttribute('fill', 'black');"});
           });
 
         </script>
