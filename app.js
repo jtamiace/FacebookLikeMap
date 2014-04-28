@@ -48,7 +48,7 @@ app.get('/auth/facebook', function(req, res) {
   if (!req.query.code) {
     var authUrl = graph.getOauthUrl({
         "client_id":     process.env.fb_app_id
-      , "redirect_uri":  'http://localhost:3000/auth/facebook'
+      , "redirect_uri":  'http://facebooklikemap.herokuapp.com/auth/facebook'
       , "scope":         'user_likes, user_about_me, friends_likes, user_status, user_checkins'
     }); 
 
@@ -67,7 +67,7 @@ app.get('/auth/facebook', function(req, res) {
   // we'll send that and get the access token
   graph.authorize({
       "client_id":      process.env.fb_app_id
-    , "redirect_uri":   'http://localhost:3000/auth/facebook'
+    , "redirect_uri":   'http://facebooklikemap.herokuapp.com/auth/facebook'
     , "client_secret":  process.env.fb_app_secret
     , "code":           req.query.code
   }, function (err, facebookRes) {
