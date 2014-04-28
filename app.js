@@ -84,7 +84,7 @@ data.mutualfriends = [];
 function getMutualFriends(friend, res, cx, cy){
   graph.get('/me/mutualfriends/' + friend.id, function(err2, response2) {
     console.log(err2);
-    data.mutualfriends.push({"name": friend.name, "numfriends": ''+response2.data.length, "cx": cx, "cy": cy});
+    data.mutualfriends.push({"idnum": friend.id, "name": friend.name, "numfriends": ''+response2.data.length, "cx": cx, "cy": cy});
     console.log(data.mutualfriends);
 
     finishCounter++;

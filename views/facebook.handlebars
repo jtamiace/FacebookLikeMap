@@ -59,6 +59,7 @@
             .style("position", "absolute")
             .style("z-index", "10")
             .style("visibility", "hidden")
+            .attr("class", function(d) {return "facebook" + d.idnum})
             .text(function(d){return d.name});
 
             svg.selectAll("circle").data(data).enter()
@@ -66,9 +67,9 @@
               .attr("r", function(d){return d.numfriends})
               .attr("cx", function(d){return d.cx})
               .attr("cy", function(d){return d.cy})
-              .on("mouseover", function(){return tooltip.style('visibility', 'visible');})
+              .on("mouseover", function(d){return d3.select(".facebook" + d.idnum).style('visibility', 'visible');})
               .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-              .on("mouseout", function(){return tooltip.style('visibility', 'hidden');});
+              .on("mouseout", function(d){return tooltip.style('visibility', 'hidden');});
           });
 
         </script>
